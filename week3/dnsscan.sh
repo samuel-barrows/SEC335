@@ -24,7 +24,7 @@ if [ -z $lastoct ]; then
     echo "scanning range..."
     for addr in $(seq -f "$host.%g" 254); do
 	lookup=$(nslookup $addr $dnsserv 2> /dev/null)
-	if [ $(echo $lookup | cut -d " " -f 3) != "server" ]; then
+	if [[ "$lookup" != *"can't"* ]]; then
 	    echo $lookup
 	fi
     done
